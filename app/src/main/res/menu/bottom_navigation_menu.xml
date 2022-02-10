@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btn_home"
+        android:enabled="true"
+        android:icon="@drawable/grid_icon"
+        android:title="" />
+
+    <item
+        android:id="@+id/btn_task"
+        android:enabled="true"
+        android:icon="@drawable/wallet"
+        android:title="" />
+
+    <item
+        android:id="@+id/btn_schedule"
+        android:enabled="true"
+        android:icon="@drawable/chart_bar_icon_152906"
+        android:title="" />
+
+    <item
+        android:id="@+id/btn_user"
+        android:enabled="true"
+        android:icon="@drawable/user_icon_1"
+        android:title=""/>
+</menu>
