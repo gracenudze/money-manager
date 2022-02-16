@@ -26,12 +26,6 @@ public class MainActivity extends AppCompatActivity {
     String transaction_dates[] = {"Jan 24, 2022", "Jan 22, 2022"};
     String budget[] = {"-$54", "-$29"};
 
-    private ProgressBar progressBar;
-    private TextView progressText;
-    int i = 0;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,25 +52,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // set the id for the progressbar and progress text
-        progressBar = findViewById(R.id.progress_bar);
-        progressText = findViewById(R.id.progress_text);
-
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // set the limitations for the numeric
-                // text under the progress bar
-                if (i <= 100) {
-                    progressText.setText("" + i);
-                    progressBar.setProgress(i);
-                    i++;
-                    handler.postDelayed(this, 200);
-                } else {
-                    handler.removeCallbacks(this);
-                }
-            }
-        }, 200);
 
         createTransactionList();
 

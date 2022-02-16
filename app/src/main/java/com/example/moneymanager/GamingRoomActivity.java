@@ -3,10 +3,11 @@ package com.example.moneymanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class GamingRoomActivity extends AppCompatActivity {
@@ -30,6 +31,15 @@ public class GamingRoomActivity extends AppCompatActivity {
                 false));
         GamingRoomAdapter firstSection = new GamingRoomAdapter(activityList);
         activityRecycler.setAdapter(firstSection);
+
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GamingRoomActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void createActivityList() {
