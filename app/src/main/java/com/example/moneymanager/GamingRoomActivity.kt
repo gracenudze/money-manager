@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.ArrayList
 
 class GamingRoomActivity : AppCompatActivity() {
-    val activityList = ArrayList<ActivityRecycler>()
+    val activityList = ArrayList<ActivityItem>()
     var activityLogos = intArrayOf(R.drawable.ic_shopping_cart, R.drawable.withdrawal_icon,
             R.drawable.gaming_icon)
     var activityNames = arrayOf("Shopping", "Withdrawal", "Gaming")
@@ -31,9 +31,9 @@ class GamingRoomActivity : AppCompatActivity() {
     }
 
     private fun createActivityList() {
-        for ((count, names) in activityNames.withIndex()) {
-            val activityList = ActivityRecycler(activityLogos[count], names,
-                    activityDates[count], activityBalance[count])
+        for ((index, names) in activityNames.withIndex()) {
+            val activityList = ActivityItem(activityLogos[index], names,
+                    activityDates[index], activityBalance[index])
             this.activityList.add(activityList)
         }
     }

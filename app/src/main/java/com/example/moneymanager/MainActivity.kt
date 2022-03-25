@@ -13,7 +13,7 @@ import android.widget.Toast
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
-    var transactionList = ArrayList<TransactionRecycler>()
+    var transactionList = ArrayList<TransactionItem>()
     var transactionLogos = intArrayOf(R.drawable.bag, R.drawable.ic_cloud_queue)
     var transactionNames = arrayOf("Groceries", "Monthly iCloud")
     var transactionDates = arrayOf("Jan 24, 2022", "Jan 22, 2022")
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createTransactionList() {
         for ((index, names) in transactionNames.withIndex()) {
-            val transactionList = TransactionRecycler(transactionLogos[index], names,
+            val transactionList = TransactionItem(transactionLogos[index], names,
                     transactionDates[index], budget[index])
             this.transactionList.add(transactionList)
         }

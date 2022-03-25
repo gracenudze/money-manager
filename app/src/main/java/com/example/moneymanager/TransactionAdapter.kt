@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import java.util.ArrayList
 
-class TransactionAdapter(private val mTransactionRecycler: ArrayList<TransactionRecycler>) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
+class TransactionAdapter(private val mTransactionItem: ArrayList<TransactionItem>) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var transactionImages: ImageView = itemView.findViewById(R.id.ivTransactionLogo)
         var transactionNames: TextView = itemView.findViewById(R.id.tvNames)
@@ -30,7 +30,7 @@ class TransactionAdapter(private val mTransactionRecycler: ArrayList<Transaction
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val transactionList = mTransactionRecycler[position]
+        val transactionList = mTransactionItem[position]
         holder.transactionImages.setImageResource(transactionList.transactionLogos)
         if (position == 1) {
             holder.transactionImages.setPadding(5, 5, 5, 5)
@@ -41,6 +41,6 @@ class TransactionAdapter(private val mTransactionRecycler: ArrayList<Transaction
     }
 
     override fun getItemCount(): Int {
-        return mTransactionRecycler.size
+        return mTransactionItem.size
     }
 }
