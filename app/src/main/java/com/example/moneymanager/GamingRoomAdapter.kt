@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import java.util.ArrayList
 
-class GamingRoomAdapter(private val mActivityList: ArrayList<ActivityList>) : RecyclerView.Adapter<GamingRoomAdapter.ViewHolder>() {
+class GamingRoomAdapter(private val mActivityRecycler: ArrayList<ActivityRecycler>) : RecyclerView.Adapter<GamingRoomAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var activityImages: ImageView = itemView.findViewById(R.id.ivActivityLogos)
         var activityNames: TextView = itemView.findViewById(R.id.tvActivityNames)
@@ -30,7 +30,7 @@ class GamingRoomAdapter(private val mActivityList: ArrayList<ActivityList>) : Re
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val activityList = mActivityList[position]
+        val activityList = mActivityRecycler[position]
         holder.activityImages.setImageResource(activityList.activityIcons)
         if (position == 0) {
             holder.activityImages.setPadding(5, 5, 5, 5)
@@ -41,6 +41,6 @@ class GamingRoomAdapter(private val mActivityList: ArrayList<ActivityList>) : Re
     }
 
     override fun getItemCount(): Int {
-        return mActivityList.size
+        return mActivityRecycler.size
     }
 }

@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.ArrayList
 
 class GamingRoomActivity : AppCompatActivity() {
-    var activityList = ArrayList<ActivityList>()
+    val activityList = ArrayList<ActivityRecycler>()
     var activityLogos = intArrayOf(R.drawable.ic_shopping_cart, R.drawable.withdrawal_icon,
             R.drawable.gaming_icon)
-    var activity_names = arrayOf("Shopping", "Withdrawal", "Gaming")
-    var activity_dates = arrayOf("Jan 24, 2022", "Jan 23, 2022", "Jan 21, 2022")
-    var activity_balance = arrayOf("-$54", "-$54", "-$54")
+    var activityNames = arrayOf("Shopping", "Withdrawal", "Gaming")
+    var activityDates = arrayOf("Jan 24, 2022", "Jan 23, 2022", "Jan 21, 2022")
+    var activityBalance = arrayOf("-$54", "-$54", "-$54")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +31,10 @@ class GamingRoomActivity : AppCompatActivity() {
     }
 
     private fun createActivityList() {
-        var count = 0
-        for (names in activity_names) {
-            val activityList = ActivityList(activityLogos[count], names,
-                    activity_dates[count], activity_balance[count])
+        for ((count, names) in activityNames.withIndex()) {
+            val activityList = ActivityRecycler(activityLogos[count], names,
+                    activityDates[count], activityBalance[count])
             this.activityList.add(activityList)
-            count++
         }
     }
 }
