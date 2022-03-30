@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import java.util.ArrayList
+import com.example.moneymanager.model.Transaction
 
-class TransactionAdapter(private val mTransactionItem: ArrayList<TransactionItem>) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
+class TransactionAdapter(private val transactions: List<Transaction>) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var transactionImages: ImageView = itemView.findViewById(R.id.ivTransactionLogo)
-        var transactionNames: TextView = itemView.findViewById(R.id.tvNames)
-        var transactionDates: TextView = itemView.findViewById(R.id.tvDates)
-        var transactionBalance: TextView = itemView.findViewById(R.id.tvBalance)
+        val transactionImage: ImageView = itemView.findViewById(R.id.ivTransactionLogo)
+        val transactionName: TextView = itemView.findViewById(R.id.tvNames)
+        val transactionDate: TextView = itemView.findViewById(R.id.tvDates)
+        val transactionBalance: TextView = itemView.findViewById(R.id.tvBalance)
 
     }
 
@@ -30,17 +30,17 @@ class TransactionAdapter(private val mTransactionItem: ArrayList<TransactionItem
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val transactionList = mTransactionItem[position]
-        holder.transactionImages.setImageResource(transactionList.transactionLogos)
+        val transaction = transactions[position]
+        holder.transactionImage.setImageResource(transaction.logo)
         if (position == 1) {
-            holder.transactionImages.setPadding(5, 5, 5, 5)
+            holder.transactionImage.setPadding(5, 5, 5, 5)
         }
-        holder.transactionNames.text = transactionList.transactionNames
-        holder.transactionDates.text = transactionList.transactionDate
-        holder.transactionBalance.text = transactionList.budget
+        holder.transactionName.text = transaction.name
+        holder.transactionDate.text = transaction.date
+        holder.transactionBalance.text = transaction.budget
     }
 
     override fun getItemCount(): Int {
-        return mTransactionItem.size
+        return transactions.size
     }
 }
