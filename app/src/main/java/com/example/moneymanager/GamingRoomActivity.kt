@@ -2,7 +2,6 @@ package com.example.moneymanager
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -20,8 +19,8 @@ class GamingRoomActivity : AppCompatActivity() {
         setContentView(R.layout.activity_gaming_room)
 
         val activityRecycler: RecyclerView = findViewById(R.id.rvActivities)
-        val firstSection = GamingRoomAdapter(activities)
-        activityRecycler.adapter = firstSection
+        val latestActivities = GamingRoomAdapter(activities)
+        activityRecycler.adapter = latestActivities
         val btnBack: ImageButton = findViewById(R.id.btnBack)
         btnBack.setOnClickListener {
             val intent = Intent(this@GamingRoomActivity, MainActivity::class.java)

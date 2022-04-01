@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
             this, RecyclerView.VERTICAL,
             false
         )
-        val firstSection = TransactionAdapter(transactions)
-        transactionRecycler.adapter = firstSection
+
+        transactionRecycler.adapter =  TransactionAdapter(transactions)
     }
 
     private fun showBottomSheetDialog() {
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog)
         bottomSheetDialog.setCanceledOnTouchOutside(false)
         val btnCreate = bottomSheetDialog.findViewById<Button>(R.id.btnCreate)
-        btnCreate!!.setOnClickListener {
+        btnCreate?.setOnClickListener {
             Toast.makeText(
                 applicationContext, "Create Button is Clicked ",
                 Toast.LENGTH_LONG
