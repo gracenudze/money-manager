@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import java.util.ArrayList
+import com.example.moneymanager.model.Activity
 
-class GamingRoomAdapter(private val mActivityItem: ArrayList<ActivityItem>) : RecyclerView.Adapter<GamingRoomAdapter.ViewHolder>() {
+class GamingRoomAdapter(private val activities: List<Activity>) : RecyclerView.Adapter<GamingRoomAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var activityImages: ImageView = itemView.findViewById(R.id.ivActivityLogos)
-        var activityNames: TextView = itemView.findViewById(R.id.tvActivityNames)
-        var activityDates: TextView = itemView.findViewById(R.id.tvActivityDates)
-        var balance: TextView = itemView.findViewById(R.id.tvActivity_balance)
+        val activityImage: ImageView = itemView.findViewById(R.id.ivActivityLogos)
+        val activityName: TextView = itemView.findViewById(R.id.tvActivityNames)
+        val activityDate: TextView = itemView.findViewById(R.id.tvActivityDates)
+        val balance: TextView = itemView.findViewById(R.id.tvActivity_balance)
 
     }
 
@@ -30,17 +30,17 @@ class GamingRoomAdapter(private val mActivityItem: ArrayList<ActivityItem>) : Re
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val activityList = mActivityItem[position]
-        holder.activityImages.setImageResource(activityList.activityIcons)
+        val activity = activities[position]
+        holder.activityImage.setImageResource(activity.icon)
         if (position == 0) {
-            holder.activityImages.setPadding(5, 5, 5, 5)
+            holder.activityImage.setPadding(5, 5, 5, 5)
         }
-        holder.activityNames.text = activityList.activityNames
-        holder.activityDates.text = activityList.activityDates
-        holder.balance.text = activityList.balance
+        holder.activityName.text = activity.name
+        holder.activityDate.text = activity.date
+        holder.balance.text = activity.balance
     }
 
     override fun getItemCount(): Int {
-        return mActivityItem.size
+        return activities.size
     }
 }

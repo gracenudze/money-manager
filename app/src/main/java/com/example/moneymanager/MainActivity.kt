@@ -10,14 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.widget.Toast
-import java.util.ArrayList
+import com.example.moneymanager.model.Transaction
 
 class MainActivity : AppCompatActivity() {
-    var transactionList = ArrayList<TransactionItem>()
-    var transactionLogos = intArrayOf(R.drawable.bag, R.drawable.ic_cloud_queue)
-    var transactionNames = arrayOf("Groceries", "Monthly iCloud")
-    var transactionDates = arrayOf("Jan 24, 2022", "Jan 22, 2022")
-    var budget = arrayOf("-$54", "-$29")
+    private val transactions = listOf(
+        Transaction("Groceries", R.drawable.bag, "Jan 24, 2022", "$-54"),
+        Transaction("Monthly iCloud", R.drawable.ic_cloud_queue, "Jan 22, 2022", "$-29")
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,20 +34,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         // set the id for the progressbar and progress text
-        createTransactionList()
         val transactionRecycler = findViewById<RecyclerView>(R.id.rvTransaction)
-        transactionRecycler.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,
-                false)
-        val firstSection = TransactionAdapter(transactionList)
-        transactionRecycler.adapter = firstSection
-    }
+        transactionRecycler.layoutManager = LinearLayoutManager(
+            this, RecyclerView.VERTICAL,
+            false
+        )
 
-    private fun createTransactionList() {
-        for ((index, names) in transactionNames.withIndex()) {
-            val transactionList = TransactionItem(transactionLogos[index], names,
-                    transactionDates[index], budget[index])
-            this.transactionList.add(transactionList)
-        }
+        transactionRecycler.adapter =  TransactionAdapter(transactions)
     }
 
     private fun showBottomSheetDialog() {
@@ -55,9 +48,11 @@ class MainActivity : AppCompatActivity() {
         bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog)
         bottomSheetDialog.setCanceledOnTouchOutside(false)
         val btnCreate = bottomSheetDialog.findViewById<Button>(R.id.btnCreate)
-        btnCreate!!.setOnClickListener {
-            Toast.makeText(applicationContext, "Create Button is Clicked ",
-                    Toast.LENGTH_LONG).show()
+        btnCreate?.setOnClickListener {
+            Toast.makeText(
+                applicationContext, "Create Button is Clicked ",
+                Toast.LENGTH_LONG
+            ).show()
             bottomSheetDialog.dismiss()
         }
         bottomSheetDialog.show()
