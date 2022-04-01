@@ -19,8 +19,8 @@ class GamingRoomActivity : AppCompatActivity() {
         setContentView(R.layout.activity_gaming_room)
 
         val activityRecycler: RecyclerView = findViewById(R.id.rvActivities)
-        val latestActivities = GamingRoomAdapter(activities)
-        activityRecycler.adapter = latestActivities
+
+        activityRecycler.adapter =  GamingRoomAdapter(activities)
         val btnBack: ImageButton = findViewById(R.id.btnBack)
         btnBack.setOnClickListener {
             val intent = Intent(this@GamingRoomActivity, MainActivity::class.java)
