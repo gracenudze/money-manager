@@ -7,16 +7,17 @@
     android:background="@drawable/gradient_background">
 
     <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:background="#f8f8f9"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_keyboard_backspace"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/btnBack"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#f8f8f9"
+        android:scaleType="fitCenter"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_keyboard_backspace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnMenu"
@@ -28,7 +29,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/threedots_icon" />
+        app:srcCompat="@drawable/threedots_icon"/>
 
     <TextView
         android:id="@+id/tvGamingRoom"

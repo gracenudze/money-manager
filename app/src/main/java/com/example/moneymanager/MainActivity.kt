@@ -5,12 +5,18 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.FrameLayout
 import android.content.Intent
+import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.widget.Toast
+import com.example.moneymanager.databinding.ActivityMainBinding
+import com.example.moneymanager.databinding.BottomSheetDialogBinding
 import com.example.moneymanager.model.Transaction
+
+private lateinit var binding: ActivityMainBinding
+private lateinit var bind: BottomSheetDialogBinding
 
 class MainActivity : AppCompatActivity() {
     private val transactions = listOf(
@@ -20,15 +26,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view: View = binding.root
+        setContentView(view)
 
         //initializing bottom sheet dialog
-        val imageButton = findViewById<ImageButton>(R.id.btnAdd)
-        imageButton.setOnClickListener { showBottomSheetDialog() }
+        binding.btnAdd.setOnClickListener { showBottomSheetDialog()  }
+
 
         //Opening the gaming activity
-        val flGameLayout = findViewById<FrameLayout>(R.id.flGame)
-        flGameLayout.setOnClickListener {
+
+        binding.flGame.setOnClickListener {
             val intent = Intent(this@MainActivity, GamingRoomActivity::class.java)
             startActivity(intent)
         }
@@ -45,10 +53,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun showBottomSheetDialog() {
         val bottomSheetDialog = BottomSheetDialog(this)
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog)
+        bind = BottomSheetDialogBinding.inflate(layoutInflater)
+        val view:View = bind.root
+
         bottomSheetDialog.setCanceledOnTouchOutside(false)
-        val btnCreate = bottomSheetDialog.findViewById<Button>(R.id.btnCreate)
-        btnCreate?.setOnClickListener {
+
+        bind.btnCreate.setOnClickListener {
             Toast.makeText(
                 applicationContext, "Create Button is Clicked ",
                 Toast.LENGTH_LONG
