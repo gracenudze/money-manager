@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.FrameLayout
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.moneymanager.databinding.ActivityMainBinding
 import com.example.moneymanager.databinding.BottomSheetDialogBinding
 import com.example.moneymanager.model.Transaction
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         //initializing bottom sheet dialog
-        binding.btnAdd.setOnClickListener { showBottomSheetDialog()  }
+        binding.btnAdd.setOnClickListener { showBottomSheetDialog() }
 
 
         //Opening the gaming activity
@@ -42,20 +44,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         // set the id for the progressbar and progress text
-        val transactionRecycler = findViewById<RecyclerView>(R.id.rvTransaction)
-        transactionRecycler.layoutManager = LinearLayoutManager(
+        binding.rvTransaction.layoutManager = LinearLayoutManager(
             this, RecyclerView.VERTICAL,
             false
         )
 
-        transactionRecycler.adapter =  TransactionAdapter(transactions)
+        binding.rvTransaction.adapter =  TransactionAdapter(transactions)
     }
 
     private fun showBottomSheetDialog() {
         val bottomSheetDialog = BottomSheetDialog(this)
-        bind = BottomSheetDialogBinding.inflate(layoutInflater)
 
-        bottomSheetDialog.show()
+        val inflater = LayoutInflater.from(this)
+        bind = BottomSheetDialogBinding.inflate(inflater)
+
+        bottomSheetDialog.setContentView(bind.root)
         bottomSheetDialog.setCanceledOnTouchOutside(false)
 
         bind.btnCreate.setOnClickListener {
@@ -65,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             ).show()
             bottomSheetDialog.dismiss()
         }
+        bottomSheetDialog.show()
     }
 }
 
