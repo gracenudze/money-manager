@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity() {
     private fun showBottomSheetDialog() {
         val bottomSheetDialog = BottomSheetDialog(this)
         bind = BottomSheetDialogBinding.inflate(layoutInflater)
-        val view:View = bind.root
 
+        bottomSheetDialog.show()
         bottomSheetDialog.setCanceledOnTouchOutside(false)
 
         bind.btnCreate.setOnClickListener {
@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
             ).show()
             bottomSheetDialog.dismiss()
         }
-        bottomSheetDialog.show()
     }
 }
 
