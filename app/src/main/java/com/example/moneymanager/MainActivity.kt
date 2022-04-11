@@ -2,15 +2,18 @@ package com.example.moneymanager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.FrameLayout
 import android.content.Intent
-import android.widget.Button
+import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import android.widget.Toast
+import com.example.moneymanager.databinding.ActivityMainBinding
+import com.example.moneymanager.databinding.BottomSheetDialogBinding
 import com.example.moneymanager.model.Transaction
+
+private lateinit var activityMainBinding: ActivityMainBinding
+private lateinit var dialogBinding: BottomSheetDialogBinding
 
 class MainActivity : AppCompatActivity() {
     private val transactions = listOf(
@@ -20,35 +23,40 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(activityMainBinding.root)
 
         //initializing bottom sheet dialog
-        val imageButton = findViewById<ImageButton>(R.id.btnAdd)
-        imageButton.setOnClickListener { showBottomSheetDialog() }
+        activityMainBinding.btnAdd.setOnClickListener { showBottomSheetDialog() }
+
 
         //Opening the gaming activity
-        val flGameLayout = findViewById<FrameLayout>(R.id.flGame)
-        flGameLayout.setOnClickListener {
+
+        activityMainBinding.flGame.setOnClickListener {
             val intent = Intent(this@MainActivity, GamingRoomActivity::class.java)
             startActivity(intent)
         }
 
         // set the id for the progressbar and progress text
-        val transactionRecycler = findViewById<RecyclerView>(R.id.rvTransaction)
-        transactionRecycler.layoutManager = LinearLayoutManager(
+        activityMainBinding.rvTransaction.layoutManager = LinearLayoutManager(
             this, RecyclerView.VERTICAL,
             false
         )
 
-        transactionRecycler.adapter =  TransactionAdapter(transactions)
+        activityMainBinding.rvTransaction.adapter =  TransactionAdapter(transactions)
     }
 
     private fun showBottomSheetDialog() {
         val bottomSheetDialog = BottomSheetDialog(this)
-        bottomSheetDialog.setContentView(R.layout.bottom_sheet_dialog)
+
+        val inflater = LayoutInflater.from(this)
+        dialogBinding = BottomSheetDialogBinding.inflate(inflater)
+
+        bottomSheetDialog.setContentView(dialogBinding.root)
         bottomSheetDialog.setCanceledOnTouchOutside(false)
-        val btnCreate = bottomSheetDialog.findViewById<Button>(R.id.btnCreate)
-        btnCreate?.setOnClickListener {
+
+        dialogBinding.btnCreate.setOnClickListener {
             Toast.makeText(
                 applicationContext, "Create Button is Clicked ",
                 Toast.LENGTH_LONG
