@@ -21,11 +21,9 @@ class GamingRoomActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGamingRoomBinding.inflate(layoutInflater)
-        val view: View = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
-        val activityRecycler: RecyclerView = findViewById(R.id.rvActivities)
-
+        val activityRecycler: RecyclerView = binding.rvActivities
         activityRecycler.adapter =  GamingRoomAdapter(activities)
 
         binding.btnBack.setOnClickListener {

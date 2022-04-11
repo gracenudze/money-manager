@@ -19,11 +19,8 @@ class TransactionAdapter(private val transactions: List<Transaction>) : Recycler
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val context = parent.context
-        val inflater = LayoutInflater.from(context)
-
         // Inflate the custom layout
-        val binding = RvTransactionItemsBinding.inflate(LayoutInflater.from(context),
+        val binding = RvTransactionItemsBinding.inflate(LayoutInflater.from(parent.context),
         parent, false)
         // Return a new holder instance
         return ViewHolder(binding)

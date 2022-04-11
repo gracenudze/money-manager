@@ -14,11 +14,9 @@ class GamingRoomAdapter(private val activities: List<Activity>) : RecyclerView.A
     inner class ViewHolder(val binding: RvGamingItemsBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val context = parent.context
-
         // Inflate the custom layout
         val binding = RvGamingItemsBinding.inflate(
-            LayoutInflater.from(context),
+            LayoutInflater.from(parent.context),
                 parent, false)
 
         // Return a new holder instance
@@ -30,7 +28,7 @@ class GamingRoomAdapter(private val activities: List<Activity>) : RecyclerView.A
             with(activities[position]) {
                 binding.ivActivityLogos.setImageResource(icon)
                 if (position == 0) {
-                binding.ivActivityLogos.setPadding(5, 5, 5, 5)
+                    binding.ivActivityLogos.setPadding(5, 5, 5, 5)
                 }
                 binding.tvActivityNames.text = this.name
 
