@@ -1,16 +1,13 @@
 package com.example.moneymanager
 
 import androidx.recyclerview.widget.RecyclerView
-import android.widget.TextView
 import android.view.ViewGroup
 import android.view.LayoutInflater
-import android.view.View
-import android.widget.ImageView
 import com.example.moneymanager.databinding.RvTransactionItemsBinding
 import com.example.moneymanager.model.Transaction
 
 class TransactionAdapter(private val transactions: List<Transaction>) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>() {
-    inner class ViewHolder(val binding:RvTransactionItemsBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val transactionItemsBinding:RvTransactionItemsBinding) : RecyclerView.ViewHolder(transactionItemsBinding.root) {
 //        val transactionImage: ImageView = itemView.findViewById(R.id.ivTransactionLogo)
 //        val transactionName: TextView = itemView.findViewById(R.id.tvNames)
 //        val transactionDate: TextView = itemView.findViewById(R.id.tvDates)
@@ -29,13 +26,13 @@ class TransactionAdapter(private val transactions: List<Transaction>) : Recycler
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             with(transactions[position]) {
-                binding.ivTransactionLogo.setImageResource(logo)
+                transactionItemsBinding.ivTransactionLogo.setImageResource(logo)
                 if (position == 1) {
-                    binding.ivTransactionLogo.setPadding(5,5,5,5)
+                    transactionItemsBinding.ivTransactionLogo.setPadding(5,5,5,5)
                 }
-                binding.tvNames.text = this.name
-                binding.tvDates.text = this.date
-                binding.tvBalance.text = this.budget
+                transactionItemsBinding.tvNames.text = this.name
+                transactionItemsBinding.tvDates.text = this.date
+                transactionItemsBinding.tvBalance.text = this.budget
             }
         }
     }

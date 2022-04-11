@@ -2,14 +2,12 @@ package com.example.moneymanager
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moneymanager.databinding.ActivityGamingRoomBinding
 import com.example.moneymanager.model.Activity
 
-private lateinit var binding:ActivityGamingRoomBinding
+private lateinit var gamingRoomBinding:ActivityGamingRoomBinding
 
 class GamingRoomActivity : AppCompatActivity() {
     private val activities = listOf(
@@ -20,13 +18,13 @@ class GamingRoomActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityGamingRoomBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        gamingRoomBinding = ActivityGamingRoomBinding.inflate(layoutInflater)
+        setContentView(gamingRoomBinding.root)
 
-        val activityRecycler: RecyclerView = binding.rvActivities
+        val activityRecycler: RecyclerView = gamingRoomBinding.rvActivities
         activityRecycler.adapter =  GamingRoomAdapter(activities)
 
-        binding.btnBack.setOnClickListener {
+        gamingRoomBinding.btnBack.setOnClickListener {
             val intent = Intent(this@GamingRoomActivity, MainActivity::class.java)
             startActivity(intent) }
         }
